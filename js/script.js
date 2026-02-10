@@ -45,6 +45,23 @@ function operate(num1, num2, operator)
     }
 }
 
-let num1;
-let num2;
-let operator;
+
+let num1 = "";
+let num2 = "";
+let operator = "";
+
+const inputButtonsLeft = document.querySelectorAll(".input-buttons-left .btnInput");
+const display = document.querySelector("#display");
+
+inputButtonsLeft.forEach((button) => {
+    button.addEventListener("click", () =>{
+        if(!operator)
+        {
+            if(!(button.textContent === "0" && !num1))
+            {
+                num1 = num1 + button.textContent;
+                display.value = num1 + operator + num2;
+            }
+        }
+    });
+});
