@@ -22,10 +22,11 @@ function divide(num1, num2)
 
 function operate(num1, num2, operator)
 {
+    let result;
     switch(operator)
     {
         case "+":
-            console.log(add(num1, num2));
+            result= add(num1, num2);
             break;
 
         case "-":
@@ -43,6 +44,7 @@ function operate(num1, num2, operator)
         default:
             console.log("Error");
     }
+    return result;
 }
 
 
@@ -62,6 +64,33 @@ inputButtonsLeft.forEach((button) => {
                 num1 = num1 + button.textContent;
                 display.value = num1 + operator + num2;
             }
+        }
+        else
+        {
+            if(!(button.textContent === "0" && !num2))
+            {
+                num2 = num2 + button.textContent;
+                display.value = num1 + operator + num2;
+            }
+        }
+    });
+});
+
+const inputOperatorButtons = document.querySelectorAll(".input-buttons-right .btnInput");
+
+inputOperatorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if(num1 && num2)
+        {
+            num1 = +operate(Number(num1),Number(num2),button.textContent);
+            num2 = "";
+            operator = button.textContent;
+            display.value = num1 + operator + num2;
+        }
+        else
+        {
+            operator = button.textContent;
+            display.value = num1 + operator + num2;
         }
     });
 });
