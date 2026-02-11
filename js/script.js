@@ -30,15 +30,15 @@ function operate(num1, num2, operator)
             break;
 
         case "-":
-            console.log(subtract(num1, num2));
+            result = subtract(num1, num2);
             break;
 
         case "*":
-            console.log(multiply(num1, num2));
+            result = multiply(num1, num2);
             break;
 
         case "/":
-            console.log(divide(num1, num2));
+            result = divide(num1, num2);
             break;
 
         default:
@@ -82,10 +82,17 @@ inputOperatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if(num1 && num2)
         {
-            num1 = +operate(Number(num1),Number(num2),button.textContent);
-            num2 = "";
-            operator = button.textContent;
-            display.value = num1 + operator + num2;
+            if(operator === "/" && num2 === "0")
+            {
+                alert("Cant divide by 0");
+            }
+            else
+            {
+                num1 = +operate(Number(num1),Number(num2),operator);
+                num2 = "";
+                operator = button.textContent;
+                display.value = num1 + operator + num2;
+            }
         }
         else
         {
@@ -94,3 +101,13 @@ inputOperatorButtons.forEach((button) => {
         }
     });
 });
+
+const btnEqual = document.querySelector(".input-buttons-left .btnEqual");
+
+btnEqual.addEventListener("click", () => {
+    display.value = +operate(Number(num1),Number(num2),operator);
+    num1 = "";
+    num2 = "";
+    operator = "";
+});
+
