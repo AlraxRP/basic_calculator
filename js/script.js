@@ -111,3 +111,11 @@ btnEqual.addEventListener("click", () => {
     operator = "";
 });
 
+const btnClear= document.querySelector("#btnClear");
+
+btnClear.addEventListener("click", () => {
+    num1 = "";
+    num2 = "";
+    operator = "";
+    display.value = "0";
+});
