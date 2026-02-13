@@ -15,8 +15,6 @@ function multiply(num1, num2)
 
 function divide(num1, num2)
 {
-    if(num2 === 0) return null;
-
     return parseFloat((num1 / num2).toFixed(2));
 }
 
@@ -105,10 +103,17 @@ inputOperatorButtons.forEach((button) => {
 const btnEqual = document.querySelector(".input-buttons-left .btnEqual");
 
 btnEqual.addEventListener("click", () => {
-    display.value = +operate(Number(num1),Number(num2),operator);
-    num1 = "";
-    num2 = "";
-    operator = "";
+    if(operator != "/" && num2 != "0")
+    {
+        display.value = +operate(Number(num1),Number(num2),operator);
+        num1 = "";
+        num2 = "";
+        operator = "";
+    }
+    else
+    {
+        alert("Cant divide by 0");
+    }
 });
 
 const btnClear= document.querySelector("#btnClear");
