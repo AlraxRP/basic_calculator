@@ -99,41 +99,51 @@ const inputOperatorButtons = document.querySelectorAll(".input-buttons-right .bt
 
 inputOperatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        if(num1 && num2)
+        if(num2)
         {
-            if(operator === "/" && num2 === "0")
+            if(!(operator === "/" && num2 === "0"))
             {
-                alert("Cant divide by 0");
+                num1 = +operate(Number(num1),Number(num2),operator);
+                num2 = ""
+                operator = button.textContent;
             }
             else
             {
-                num1 = +operate(Number(num1),Number(num2),operator);
-                num2 = "";
-                operator = button.textContent;
-                display.value = num1 + operator + num2;
+                alert("Cant divide by 0");
             }
         }
         else
         {
-            operator = button.textContent;
-            display.value = num1 + operator + num2;
+            if(!num1)
+            {
+                num1 = "0";
+            }
         }
+        operator = button.textContent;
+        display.value = num1 + operator + num2;
     });
 });
 
 const btnEqual = document.querySelector(".input-buttons-left .btnEqual");
 
 btnEqual.addEventListener("click", () => {
-    if(!(operator === "/" && num2 === "0"))
+    if(num2)
     {
-        display.value = +operate(Number(num1),Number(num2),operator);
-        num1 = "";
-        num2 = "";
-        operator = "";
+        if(!(operator === "/" && num2 === "0"))
+        {
+            display.value = +operate(Number(num1),Number(num2),operator);
+            num1 = "";
+            num2 = "";
+            operator = "";
+        }
+        else
+        {
+            alert("Cant divide by 0");
+        }
     }
     else
     {
-        alert("Cant divide by 0");
+        alert("Invalid format");
     }
 });
 
@@ -143,5 +153,5 @@ btnClear.addEventListener("click", () => {
     num1 = "";
     num2 = "";
     operator = "";
-    display.value = "0";
+    display.value = " ";
 });
