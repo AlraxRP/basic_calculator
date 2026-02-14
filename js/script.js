@@ -55,22 +55,43 @@ const display = document.querySelector("#display");
 
 inputButtonsLeft.forEach((button) => {
     button.addEventListener("click", () =>{
-        if(!operator)
+        if(operator)
         {
-            if(!(button.textContent === "0" && !num1))
+            if(num2)
             {
-                num1 = num1 + button.textContent;
-                display.value = num1 + operator + num2;
+                if(num2 === "0")
+                {
+                    num2 = button.textContent;
+                }
+                else
+                {
+                    num2 += button.textContent;
+                }
+            }
+            else
+            {
+                num2 = button.textContent;
             }
         }
         else
         {
-            if(!(button.textContent === "0" && !num2))
+            if(num1)
             {
-                num2 = num2 + button.textContent;
-                display.value = num1 + operator + num2;
+                if(num1 === "0")
+                {
+                    num1 = button.textContent;
+                }
+                else
+                {
+                    num1 += button.textContent;
+                }
+            }
+            else
+            {
+                num1 = button.textContent;
             }
         }
+        display.value = num1 + operator + num2;
     });
 });
 
@@ -103,7 +124,7 @@ inputOperatorButtons.forEach((button) => {
 const btnEqual = document.querySelector(".input-buttons-left .btnEqual");
 
 btnEqual.addEventListener("click", () => {
-    if(operator != "/" && num2 != "0")
+    if(!(operator === "/" && num2 === "0"))
     {
         display.value = +operate(Number(num1),Number(num2),operator);
         num1 = "";
