@@ -54,6 +54,16 @@ h1
     color: white;
 }
 
+#btnDelete
+{
+    width: auto;
+    height: 30px;
+    margin-bottom: 20px;
+    background-color: cornflowerblue;
+    font-size: 25px;
+    color: white;
+}
+
 #containerBottom
 {
     display: flex;
