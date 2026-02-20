@@ -46,11 +46,11 @@ function operate(num1, num2, operator)
 }
 
 
-let num1 = "";
+let num1 = "0";
 let num2 = "";
 let operator = "";
 
-const inputButtonsLeft = document.querySelectorAll(".input-buttons-left .btnInput");
+const inputButtonsLeft = document.querySelectorAll(".input-buttons-left .btnNumber");
 const display = document.querySelector("#display");
 
 inputButtonsLeft.forEach((button) => {
@@ -154,4 +154,64 @@ btnClear.addEventListener("click", () => {
     num2 = "";
     operator = "";
     display.value = " ";
+});
+
+const btnDelete = document.querySelector("#btnDelete");
+
+btnDelete.addEventListener("click", () => {
+    if(operator)
+    {
+        if(num2)
+        {
+            num2 = num2.slice(0,num2.length-1);
+        }
+        else
+        {
+            operator = "";
+        }
+    }
+    else
+    {
+
+        if(num1)
+        {
+            num1 = num1.slice(0,num2.length-1);
+        }
+    }
+
+    display.value = num1 + operator + num2; 
+});
+
+const btnDecimal = document.querySelector(".btnDecimal");
+
+btnDecimal.addEventListener("click", () => {
+    if(operator)
+    {
+        if(num2)
+        {
+            if(!num2.includes("."))
+            {
+                num2 += ".";
+            }
+        }
+        else
+        {
+            num2 = "0.";
+        }
+    }
+    else
+    {
+        if(num1)
+        {
+            if(!num1.includes("."))
+            {
+                num1 += ".";
+            }
+        }
+        else
+        {
+            num1 = "0.";
+        }
+    }
+    display.value = num1 + operator + num2;
 });
