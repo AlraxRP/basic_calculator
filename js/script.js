@@ -86,6 +86,54 @@ function addDigit(digit)
     display.value = num1 + operator + num2;
 }
 
+function addOperator(simbol)
+{
+    if(num2)
+    {
+        if(!(operator === "/" && num2 === "0"))
+        {
+            num1 = +operate(Number(num1),Number(num2),operator);
+            num2 = ""
+            operator = simbol;
+        }
+        else
+        {
+            alert("Cant divide by 0");
+        }
+    }
+    else
+    {
+        if(!num1)
+        {
+            num1 = "0";
+        }
+    }
+    operator = simbol;
+    display.value = num1 + operator + num2;
+}
+
+function solveOperation()
+{
+    if(num2)
+    {
+        if(!(operator === "/" && num2 === "0"))
+        {
+            display.value = +operate(Number(num1),Number(num2),operator);
+            num1 = "";
+            num2 = "";
+            operator = "";
+        }
+        else
+        {
+            alert("Cant divide by 0");
+        }
+    }
+    else
+    {
+        alert("Invalid format");
+    }
+}
+
 
 let num1 = "0";
 let num2 = "";
@@ -105,53 +153,14 @@ const inputOperatorButtons = document.querySelectorAll(".input-buttons-right .bt
 
 inputOperatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        if(num2)
-        {
-            if(!(operator === "/" && num2 === "0"))
-            {
-                num1 = +operate(Number(num1),Number(num2),operator);
-                num2 = ""
-                operator = button.textContent;
-            }
-            else
-            {
-                alert("Cant divide by 0");
-            }
-        }
-        else
-        {
-            if(!num1)
-            {
-                num1 = "0";
-            }
-        }
-        operator = button.textContent;
-        display.value = num1 + operator + num2;
+        const operatorBtn = button.textContent;
+        addOperator(operatorBtn);
     });
 });
 
 const btnEqual = document.querySelector(".input-buttons-left .btnEqual");
 
-btnEqual.addEventListener("click", () => {
-    if(num2)
-    {
-        if(!(operator === "/" && num2 === "0"))
-        {
-            display.value = +operate(Number(num1),Number(num2),operator);
-            num1 = "";
-            num2 = "";
-            operator = "";
-        }
-        else
-        {
-            alert("Cant divide by 0");
-        }
-    }
-    else
-    {
-        alert("Invalid format");
-    }
-});
+btnEqual.addEventListener("click", () => solveOperation());
 
 const btnClear= document.querySelector("#btnClear");
 
