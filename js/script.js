@@ -45,6 +45,47 @@ function operate(num1, num2, operator)
     return result;
 }
 
+function addDigit(digit)
+{
+    if(operator)
+    {
+        if(num2)
+        {
+            if(num2 === "0")
+            {
+                num2 = digit;
+            }
+            else
+            {
+                num2 += digit;
+            }
+        }
+        else
+        {
+            num2 = digit;
+        }
+    }
+    else
+    {
+        if(num1)
+        {
+            if(num1 === "0")
+            {
+                num1 = digit;
+            }
+            else
+            {
+                num1 += digit;
+            }
+        }
+        else
+        {
+            num1 = digit;
+        }
+    }
+    display.value = num1 + operator + num2;
+}
+
 
 let num1 = "0";
 let num2 = "";
@@ -55,43 +96,8 @@ const display = document.querySelector("#display");
 
 inputButtonsLeft.forEach((button) => {
     button.addEventListener("click", () =>{
-        if(operator)
-        {
-            if(num2)
-            {
-                if(num2 === "0")
-                {
-                    num2 = button.textContent;
-                }
-                else
-                {
-                    num2 += button.textContent;
-                }
-            }
-            else
-            {
-                num2 = button.textContent;
-            }
-        }
-        else
-        {
-            if(num1)
-            {
-                if(num1 === "0")
-                {
-                    num1 = button.textContent;
-                }
-                else
-                {
-                    num1 += button.textContent;
-                }
-            }
-            else
-            {
-                num1 = button.textContent;
-            }
-        }
-        display.value = num1 + operator + num2;
+        const numberBtn = button.textContent;
+        addDigit(numberBtn);
     });
 });
 
