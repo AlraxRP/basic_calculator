@@ -166,7 +166,7 @@ function backspace()
     display.value = num1 + operator + num2;
 }
 
-function decimalPoint()
+function addDecimalPoint()
 {
     if(operator)
     {
@@ -237,4 +237,77 @@ btnDelete.addEventListener("click", () => backspace());
 
 const btnDecimal = document.querySelector(".btnDecimal");
 
-btnDecimal.addEventListener("click", () => decimalPoint());
+btnDecimal.addEventListener("click", () => addDecimalPoint());
+
+document.addEventListener("keydown", (event) => {
+    const keyName = event.key;
+
+    switch(keyName)
+    {
+        case "0":
+            addDigit("0");
+            break;
+        case "1":
+            addDigit("1");
+            break;
+        case "2":
+            addDigit("2");
+            break;
+        case "3":
+            addDigit("3");
+            break;
+        case "4":
+            addDigit("4");
+            break;
+        case "5":
+            addDigit("5");
+            break;
+        case "6":
+            addDigit("6");
+            break;
+        case "7":
+            addDigit("7");
+            break;
+        case "8":
+            addDigit("8");
+            break;
+        case "9":
+            addDigit("9");
+            break;
+
+        case "+":
+            addOperator("+");
+            break;
+
+        case "-":
+            addOperator("-");
+            break;
+        
+        case "*":
+            addOperator("*");
+            break;
+
+        case "/":
+            addOperator("/");
+            break;
+
+        case "Enter":
+            solveOperation();
+            break;
+
+        case ".":
+            addDecimalPoint();
+            break;
+        
+        case "Backspace":
+            backspace();
+            break;
+        
+        case "c":
+            clear();
+            break;
+
+        default:
+            break;
+    }
+});
